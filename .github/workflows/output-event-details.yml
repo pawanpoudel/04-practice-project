@@ -1,0 +1,18 @@
+name: Output Issue Event Details
+
+# This will trigger the workflow whenever an issue is created, edited
+# or closed
+on:
+  issues:
+    types: [opened, edited, closed]
+
+jobs:
+  log-event-details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log event details
+        run: |
+          echo "Action performed: ${{ github.event.action }}"
+          echo "Issue title: ${{ github.event.issue.title }}"
+          echo "Issue body: ${{ github.event.issue.body }}"
+          echo "Issue creator: ${{ github.event.issue.user.login }}"
